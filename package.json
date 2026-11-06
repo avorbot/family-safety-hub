@@ -1,0 +1,43 @@
+{
+  "name": "family-safety-hub",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Transparent, consent-based parental controls: screen-time limits, activity summaries, time requests and check-ins.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "tsx watch --disable-warning=ExperimentalWarning server/index.ts",
+    "dev:web": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "start": "node --disable-warning=ExperimentalWarning dist/server/index.js",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p web",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/supertest": "^7.2.1",
+    "@vitejs/plugin-react": "^5.2.0",
+    "concurrently": "^9.2.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "supertest": "^7.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7",
+    "vitest": "^5.1.0"
+  }
+}
